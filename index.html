@@ -14,6 +14,9 @@
   .chips { display:flex; flex-wrap:wrap; gap:6px; margin-top:12px; }
   .chip { background:rgba(245,179,1,.12); border:1px solid rgba(245,179,1,.35); color:#ffd34d; font-size:11.5px; font-weight:600; padding:4px 9px; border-radius:999px; }
   .chip.cinza { background:#1a1a1d; border-color:#2c2c30; color:#cfcfcf; }
+  .filtros { display:flex; flex-wrap:wrap; gap:6px; margin:0 2px 10px; }
+  .fbtn { background:#1a1a1d; border:1px solid #2c2c30; color:#cfcfcf; font-size:12px; font-weight:600; padding:6px 12px; border-radius:999px; cursor:pointer; font-family:inherit; }
+  .fbtn.ativo { background:rgba(245,179,1,.14); border-color:rgba(245,179,1,.5); color:#ffd34d; }
   h2 { font-size:15.5px; margin:24px 2px 10px; display:flex; align-items:center; gap:8px; }
   h2 .barra { width:4px; height:16px; background:#f5b301; border-radius:2px; display:inline-block; }
   .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(158px,1fr)); gap:10px; }
@@ -75,6 +78,11 @@
 </header>
 
 <h2><span class="barra"></span>⚡ Geração desde a instalação</h2>
+<div class="filtros" role="group" aria-label="Filtrar período da geração">
+  <button class="fbtn ativo" data-modo="todos" onclick="filtrarMeses('todos',this)">Todos os meses</button>
+  <button class="fbtn" data-modo="6" onclick="filtrarMeses('6',this)">Últimos 6 meses</button>
+  <button class="fbtn" data-modo="3" onclick="filtrarMeses('3',this)">Últimos 3 meses</button>
+</div>
 <div class="cards">
   <div class="card"><div class="rot">Total gerado abr–out</div><div class="val ambar">9.633 <small>kWh</small></div><div class="det">+ ~107 kWh de nov (parcial) = 9,74 MWh no app</div></div>
   <div class="card"><div class="rot">Média meses cheios</div><div class="val">1.480 <small>kWh/mês</small></div><div class="det">mai a out/2026</div></div>
@@ -90,29 +98,41 @@
       </linearGradient>
     </defs>
     <line x1="8" y1="160" x2="632" y2="160" stroke="#2a2a2c" stroke-width="1"/>
-    <g>
+    <g class="gmes" data-mes="2026-04">
       <rect x="18"  y="104" width="46" height="56"  fill="url(#gAmbar)" rx="4"/><line x1="14" y1="76"  x2="68"  y2="76"  stroke="#ff5a5a" stroke-width="2"/><text class="barra-val" x="41"  y="97"  text-anchor="middle">753</text><text class="barra-rot" x="41"  y="175" text-anchor="middle">abr/26*</text>
+    </g>
+    <g class="gmes" data-mes="2026-05">
       <rect x="106" y="64"  width="46" height="96"  fill="url(#gAmbar)" rx="4"/><line x1="102" y1="51"  x2="156" y2="51"  stroke="#ff5a5a" stroke-width="2"/><text class="barra-val" x="129" y="57"  text-anchor="middle">1.300</text><text class="barra-rot" x="129" y="175" text-anchor="middle">mai/26</text>
+    </g>
+    <g class="gmes" data-mes="2026-06">
       <rect x="194" y="62"  width="46" height="98"  fill="url(#gAmbar)" rx="4"/><line x1="190" y1="51"  x2="244" y2="51"  stroke="#ff5a5a" stroke-width="2"/><text class="barra-val" x="217" y="55"  text-anchor="middle">1.330</text><text class="barra-rot" x="217" y="175" text-anchor="middle">jun/26</text>
+    </g>
+    <g class="gmes" data-mes="2026-07">
       <rect x="282" y="56"  width="46" height="104" fill="url(#gAmbar)" rx="4"/><line x1="278" y1="46"  x2="332" y2="46"  stroke="#ff5a5a" stroke-width="2"/><text class="barra-val" x="305" y="49"  text-anchor="middle">1.410</text><text class="barra-rot" x="305" y="175" text-anchor="middle">jul/26</text>
+    </g>
+    <g class="gmes" data-mes="2026-08">
       <rect x="370" y="41"  width="46" height="119" fill="url(#gAmbar)" rx="4"/><line x1="366" y1="38"  x2="420" y2="38"  stroke="#ff5a5a" stroke-width="2"/><text class="barra-val" x="393" y="34"  text-anchor="middle">1.610</text><text class="barra-rot" x="393" y="175" text-anchor="middle">ago/26</text>
+    </g>
+    <g class="gmes" data-mes="2026-09">
       <rect x="458" y="44"  width="46" height="116" fill="url(#gAmbar)" rx="4"/><line x1="454" y1="34"  x2="508" y2="34"  stroke="#ff5a5a" stroke-width="2"/><text class="barra-val" x="481" y="37"  text-anchor="middle">1.580</text><text class="barra-rot" x="481" y="175" text-anchor="middle">set/26</text>
+    </g>
+    <g class="gmes" data-mes="2026-10">
       <rect x="546" y="38"  width="46" height="122" fill="url(#gAmbar)" rx="4"/><line x1="542" y1="30"  x2="596" y2="30"  stroke="#ff5a5a" stroke-width="2"/><text class="barra-val" x="569" y="31"  text-anchor="middle">1.650</text><text class="barra-rot" x="569" y="175" text-anchor="middle">out/26</text>
     </g>
   </svg>
   <div class="nota">*Abril foi mês parcial (sistema ligado em 06/04). Fonte: app SolarZ/FusionSolar, prints de 03/11/2026.</div>
 </div>
 <div class="box scroll">
-  <table>
+  <table id="tabGeracao">
     <tr><th>Mês</th><th>Gerado</th><th>Prognóstico</th><th>Desempenho</th></tr>
-    <tr><td>abr/2026*</td><td>753,39 kWh</td><td>1.140 kWh</td><td>66%</td></tr>
-    <tr><td>mai/2026</td><td>1.300 kWh</td><td>1.470 kWh</td><td>89%</td></tr>
-    <tr><td>jun/2026</td><td>1.330 kWh</td><td>1.480 kWh</td><td>90%</td></tr>
-    <tr><td>jul/2026</td><td>1.410 kWh</td><td>1.540 kWh</td><td>92%</td></tr>
-    <tr><td>ago/2026</td><td>1.610 kWh</td><td>1.650 kWh</td><td>98%</td></tr>
-    <tr><td>set/2026</td><td>1.580 kWh</td><td>1.700 kWh</td><td>93%</td></tr>
-    <tr><td>out/2026</td><td>1.650 kWh</td><td>1.760 kWh</td><td>93%</td></tr>
-    <tr class="total"><td>Total abr–out</td><td>9.633,39 kWh</td><td>10.740 kWh</td><td>89,75% (geral do app)</td></tr>
+    <tr class="lmes" data-mes="2026-04" data-gerado="753.39" data-prog="1140"><td>abr/2026*</td><td>753,39 kWh</td><td>1.140 kWh</td><td>66%</td></tr>
+    <tr class="lmes" data-mes="2026-05" data-gerado="1300" data-prog="1470"><td>mai/2026</td><td>1.300 kWh</td><td>1.470 kWh</td><td>89%</td></tr>
+    <tr class="lmes" data-mes="2026-06" data-gerado="1330" data-prog="1480"><td>jun/2026</td><td>1.330 kWh</td><td>1.480 kWh</td><td>90%</td></tr>
+    <tr class="lmes" data-mes="2026-07" data-gerado="1410" data-prog="1540"><td>jul/2026</td><td>1.410 kWh</td><td>1.540 kWh</td><td>92%</td></tr>
+    <tr class="lmes" data-mes="2026-08" data-gerado="1610" data-prog="1650"><td>ago/2026</td><td>1.610 kWh</td><td>1.650 kWh</td><td>98%</td></tr>
+    <tr class="lmes" data-mes="2026-09" data-gerado="1580" data-prog="1700"><td>set/2026</td><td>1.580 kWh</td><td>1.700 kWh</td><td>93%</td></tr>
+    <tr class="lmes" data-mes="2026-10" data-gerado="1650" data-prog="1760"><td>out/2026</td><td>1.650 kWh</td><td>1.760 kWh</td><td>93%</td></tr>
+    <tr class="total"><td id="totRotulo">Total abr–out</td><td id="totGerado">9.633,39 kWh</td><td id="totProg">10.740 kWh</td><td id="totDesemp">89,75% (geral do app)</td></tr>
   </table>
 </div>
 
@@ -192,9 +212,28 @@
 </div>
 
 <footer>
-  Painel v6 — atualizado em 03/11/2026 (leitura no celular ajustada). Fontes: faturas Enel abr/2026 (PDF) e jul/2026 (foto anotada pela Raio Solar), geração mensal do app SolarZ/FusionSolar (prints de 03/11/2026) e valores das bandeiras tarifárias da ANEEL.<br>
+  Painel v7 — atualizado em 03/11/2026 (leitura no celular ajustada + filtro de período na geração). Fontes: faturas Enel abr/2026 (PDF) e jul/2026 (foto anotada pela Raio Solar), geração mensal do app SolarZ/FusionSolar (prints de 03/11/2026) e valores das bandeiras tarifárias da ANEEL.<br>
   O valor da energia gerada usa a tarifa cheia (TE + TUSD = R$ 0,9467/kWh) — é o valor bruto; a economia efetiva na conta é um pouco menor, porque a energia injetada não compensa 100% da TUSD (cobrança do Fio B).
 </footer>
 
+<script>
+function fmtKwh(v){ return v.toLocaleString('pt-BR',{minimumFractionDigits:2, maximumFractionDigits:2}) + ' kWh'; }
+function filtrarMeses(modo, btn){
+  document.querySelectorAll('.fbtn').forEach(function(b){ b.classList.remove('ativo'); });
+  if(btn) btn.classList.add('ativo');
+  var linhas = Array.prototype.slice.call(document.querySelectorAll('#tabGeracao .lmes'));
+  var vis = (modo === 'todos') ? linhas : linhas.slice(-parseInt(modo,10));
+  var set = {};
+  vis.forEach(function(l){ set[l.getAttribute('data-mes')] = true; });
+  linhas.forEach(function(l){ l.style.display = set[l.getAttribute('data-mes')] ? '' : 'none'; });
+  document.querySelectorAll('.gmes').forEach(function(g){ g.style.display = set[g.getAttribute('data-mes')] ? '' : 'none'; });
+  var g = 0, p = 0;
+  vis.forEach(function(l){ g += parseFloat(l.getAttribute('data-gerado')); p += parseFloat(l.getAttribute('data-prog')); });
+  document.getElementById('totGerado').textContent = fmtKwh(g);
+  document.getElementById('totProg').textContent = fmtKwh(p);
+  document.getElementById('totDesemp').textContent = (modo === 'todos') ? '89,75% (geral do app)' : ((p > 0 ? (g/p*100).toFixed(1).replace('.', ',') : '0,0') + '% do período');
+  document.getElementById('totRotulo').textContent = (modo === 'todos') ? 'Total abr–out' : ('Total últimos ' + modo + ' meses');
+}
+</script>
 </body>
 </html>
