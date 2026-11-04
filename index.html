@@ -40,6 +40,21 @@
   .barra-val { font-size:10.5px; fill:#f2f2f2; font-weight:700; }
   .prog { background:#1d1d1f; border-radius:999px; height:12px; overflow:hidden; margin-top:8px; }
   .prog > div { height:100%; width:30%; background:linear-gradient(90deg,#b97e00,#f5b301); border-radius:999px; }
+  html, body { overflow-x: clip; }
+  svg { max-width: 100%; }
+  @media (max-width: 640px) {
+    body { padding: 0 10px 24px; }
+    .hero h1 { font-size: 21px; }
+    .card .val { font-size: 20px; }
+    .cards.bal { grid-template-columns: 1fr; }
+    table.empilha, table.empilha tbody, table.empilha tr, table.empilha td { display: block; width: 100%; }
+    table.empilha tr.cab { display: none; }
+    table.empilha tr { border: 1px solid #26262a; border-radius: 12px; padding: 6px 10px; margin-bottom: 10px; background: rgba(255,255,255,.02); }
+    table.empilha td { border: none; padding: 5px 0; display: flex; justify-content: space-between; align-items: baseline; white-space: normal; text-align: right; }
+    table.empilha td::before { content: attr(data-r); color: #9c9c9c; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; font-weight: 700; text-align: left; margin-right: 10px; }
+    table.empilha td:first-child { font-weight: 800; color: #ffd34d; }
+    .rolavel svg { min-width: 600px; }
+  }
   footer { margin-top:26px; font-size:11px; color:#5f5f5f; line-height:1.65; border-top:1px solid #1b1b1d; padding-top:12px; }
 </style>
 </head>
@@ -102,7 +117,7 @@
 </div>
 
 <h2><span class="barra"></span>🔋 Balanço de energia — fatura jul/2026</h2>
-<div class="cards">
+<div class="cards bal">
   <div class="card" style="border-left:4px solid #ff8c1a"><div class="rot">🟠 Geração no período</div><div class="val">1.483 <small>kWh</small></div><div class="det">tudo que a usina produziu de 25/06 a 27/07</div></div>
   <div class="card" style="border-left:4px solid #ffd21f"><div class="rot">🟡 Energia injetada</div><div class="val">952 <small>kWh</small></div><div class="det">sobrou e foi pra rede da Enel — virou crédito</div></div>
   <div class="card" style="border-left:4px solid #ff5fa2"><div class="rot">🩷 Autoconsumo</div><div class="val">531 <small>kWh</small></div><div class="det">usado direto do sol, na hora · = geração − injetada</div></div>
@@ -120,10 +135,10 @@
   <div class="card"><div class="rot">Valor da conta</div><div class="val verde">R$ 367,03</div><div class="det">venc. 14/08/2026 · bandeira amarela</div></div>
 </div>
 <div class="box scroll">
-  <table>
-    <tr><th>Mês</th><th>Consumo rede</th><th>Injetada</th><th>Créd. usados</th><th>Saldo créditos</th><th>Bandeira</th><th>Valor</th><th>Vencimento</th></tr>
-    <tr><td>abr/2026</td><td>495 kWh</td><td>578 kWh</td><td>495 kWh</td><td>83 kWh</td><td>Verde</td><td>R$ 200,53</td><td>20/05/2026</td></tr>
-    <tr><td>jul/2026</td><td>803 kWh</td><td>952 kWh</td><td>803 kWh</td><td>728 kWh</td><td>Amarela</td><td>R$ 367,03</td><td>14/08/2026</td></tr>
+  <table class="empilha">
+    <tr class="cab"><th>Mês</th><th>Consumo rede</th><th>Injetada</th><th>Créd. usados</th><th>Saldo créditos</th><th>Bandeira</th><th>Valor</th><th>Vencimento</th></tr>
+    <tr><td data-r="Mês">abr/2026</td><td data-r="Consumo rede">495 kWh</td><td data-r="Injetada">578 kWh</td><td data-r="Créd. usados">495 kWh</td><td data-r="Saldo créditos">83 kWh</td><td data-r="Bandeira">Verde</td><td data-r="Valor">R$ 200,53</td><td data-r="Vencimento">20/05/2026</td></tr>
+    <tr><td data-r="Mês">jul/2026</td><td data-r="Consumo rede">803 kWh</td><td data-r="Injetada">952 kWh</td><td data-r="Créd. usados">803 kWh</td><td data-r="Saldo créditos">728 kWh</td><td data-r="Bandeira">Amarela</td><td data-r="Valor">R$ 367,03</td><td data-r="Vencimento">14/08/2026</td></tr>
   </table>
   <div class="nota">A fatura de julho chegou pela foto anotada da Raio Solar (03/11/2026). Aguardando as de mai, jun, ago, set e out/2026 para completar o histórico (o arquivo recebido como "05-2026" era a mesma fatura de abril).</div>
 </div>
@@ -147,7 +162,7 @@
 </div>
 
 <h2><span class="barra"></span>🔌 Consumo da rede — histórico</h2>
-<div class="box">
+<div class="box rolavel">
   <svg viewBox="0 0 640 190" width="100%" role="img" aria-label="Histórico de consumo da rede em kWh">
     <line x1="8" y1="150" x2="632" y2="150" stroke="#2a2a2c" stroke-width="1"/>
     <g>
@@ -177,7 +192,7 @@
 </div>
 
 <footer>
-  Painel v5 — atualizado em 03/11/2026. Fontes: faturas Enel abr/2026 (PDF) e jul/2026 (foto anotada pela Raio Solar), geração mensal do app SolarZ/FusionSolar (prints de 03/11/2026) e valores das bandeiras tarifárias da ANEEL.<br>
+  Painel v6 — atualizado em 03/11/2026 (leitura no celular ajustada). Fontes: faturas Enel abr/2026 (PDF) e jul/2026 (foto anotada pela Raio Solar), geração mensal do app SolarZ/FusionSolar (prints de 03/11/2026) e valores das bandeiras tarifárias da ANEEL.<br>
   O valor da energia gerada usa a tarifa cheia (TE + TUSD = R$ 0,9467/kWh) — é o valor bruto; a economia efetiva na conta é um pouco menor, porque a energia injetada não compensa 100% da TUSD (cobrança do Fio B).
 </footer>
 
