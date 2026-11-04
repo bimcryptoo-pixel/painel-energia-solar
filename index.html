@@ -101,19 +101,31 @@
   </table>
 </div>
 
-<h2><span class="barra"></span>🧾 Última fatura Enel — abril/2026</h2>
+<h2><span class="barra"></span>🔋 Balanço de energia — fatura jul/2026</h2>
 <div class="cards">
-  <div class="card"><div class="rot">Consumo da rede</div><div class="val">495 <small>kWh</small></div><div class="det">leitura 28/03 a 27/04</div></div>
-  <div class="card"><div class="rot">Energia injetada</div><div class="val ambar">578 <small>kWh</small></div><div class="det">excedente enviado à rede</div></div>
-  <div class="card"><div class="rot">Saldo de créditos</div><div class="val azul">83 <small>kWh</small></div><div class="det">495 usados no mês · 0 a expirar</div></div>
-  <div class="card"><div class="rot">Valor da conta</div><div class="val verde">R$ 200,53</div><div class="det">venc. 20/05/2026 · bandeira verde</div></div>
+  <div class="card" style="border-left:4px solid #ff8c1a"><div class="rot">🟠 Geração no período</div><div class="val">1.483 <small>kWh</small></div><div class="det">tudo que a usina produziu de 25/06 a 27/07</div></div>
+  <div class="card" style="border-left:4px solid #ffd21f"><div class="rot">🟡 Energia injetada</div><div class="val">952 <small>kWh</small></div><div class="det">sobrou e foi pra rede da Enel — virou crédito</div></div>
+  <div class="card" style="border-left:4px solid #ff5fa2"><div class="rot">🩷 Autoconsumo</div><div class="val">531 <small>kWh</small></div><div class="det">usado direto do sol, na hora · = geração − injetada</div></div>
+  <div class="card" style="border-left:4px solid #3ddc74"><div class="rot">🟢 Consumo Enel</div><div class="val">803 <small>kWh</small></div><div class="det">veio da rede (principalmente à noite)</div></div>
+</div>
+<div class="box">
+  <div class="nota" style="margin-top:0">📌 <strong>As regras do balanço:</strong> a geração se divide em <strong>autoconsumo</strong> (a casa usa na hora) + <strong>injetada</strong> (o excedente vai pra rede e vira crédito). O crédito abate o consumo da Enel — e o que sobra acumula: o saldo já está em <strong>728 kWh</strong>. No período, a casa consumiu <strong>1.334 kWh</strong> no total (531 direto do sol + 803 da rede). Explicação da Sabrina (Raio Solar) sobre a fatura de julho.</div>
+</div>
+
+<h2><span class="barra"></span>🧾 Última fatura Enel — julho/2026</h2>
+<div class="cards">
+  <div class="card"><div class="rot">Consumo da rede</div><div class="val">803 <small>kWh</small></div><div class="det">leitura 25/06 a 27/07 · 32 dias</div></div>
+  <div class="card"><div class="rot">Energia injetada</div><div class="val ambar">952 <small>kWh</small></div><div class="det">excedente enviado à rede</div></div>
+  <div class="card"><div class="rot">Saldo de créditos</div><div class="val azul">728 <small>kWh</small></div><div class="det">803 usados no mês · 0 a expirar</div></div>
+  <div class="card"><div class="rot">Valor da conta</div><div class="val verde">R$ 367,03</div><div class="det">venc. 14/08/2026 · bandeira amarela</div></div>
 </div>
 <div class="box scroll">
   <table>
     <tr><th>Mês</th><th>Consumo rede</th><th>Injetada</th><th>Créd. usados</th><th>Saldo créditos</th><th>Bandeira</th><th>Valor</th><th>Vencimento</th></tr>
     <tr><td>abr/2026</td><td>495 kWh</td><td>578 kWh</td><td>495 kWh</td><td>83 kWh</td><td>Verde</td><td>R$ 200,53</td><td>20/05/2026</td></tr>
+    <tr><td>jul/2026</td><td>803 kWh</td><td>952 kWh</td><td>803 kWh</td><td>728 kWh</td><td>Amarela</td><td>R$ 367,03</td><td>14/08/2026</td></tr>
   </table>
-  <div class="nota">Aguardando as faturas de mai/2026 a out/2026 para completar o histórico (o arquivo recebido como "05-2026" era a mesma fatura de abril).</div>
+  <div class="nota">A fatura de julho chegou pela foto anotada da Raio Solar (03/11/2026). Aguardando as de mai, jun, ago, set e out/2026 para completar o histórico (o arquivo recebido como "05-2026" era a mesma fatura de abril).</div>
 </div>
 
 <h2><span class="barra"></span>🔌 Consumo da rede — histórico</h2>
@@ -147,7 +159,7 @@
 </div>
 
 <footer>
-  Painel v3 — atualizado em 03/11/2026. Fontes: fatura Enel abr/2026 (PDF) e geração mensal do app SolarZ/FusionSolar (prints de 03/11/2026).<br>
+  Painel v4 — atualizado em 03/11/2026. Fontes: faturas Enel abr/2026 (PDF) e jul/2026 (foto anotada pela Raio Solar) e geração mensal do app SolarZ/FusionSolar (prints de 03/11/2026).<br>
   O valor da energia gerada usa a tarifa cheia (TE + TUSD = R$ 0,9467/kWh) — é o valor bruto; a economia efetiva na conta é um pouco menor, porque a energia injetada não compensa 100% da TUSD (cobrança do Fio B).
 </footer>
 
